@@ -1,8 +1,11 @@
+const express = require('express');
+const app = express();
 const AWS = require('aws-sdk'),
     fs = require('fs');
-const keys =  require('./keys.json')
 const FOLDER = `./test`;
 const BUCKET_NAME = 'searchapp';
+const PORT = 3000
+
 
 function uploadToS3(name, file) {
 fs.readFile(file, function (err, data) {
@@ -28,6 +31,11 @@ fs.readFile(file, function (err, data) {
   })
 }
 
-fs.watch(FOLDER, (eventname, filename) => {
-  uploadToS3(filename, `${FOLDER}/${filename}`);
-})
+app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/aws', (req, res) => {
+  fs.watch(FOLDER, (eventname, filename) => {
+    uploadToS3(filename, `${FOLDER}/${filename}`);
+  })
+});
+
+app.listen(3000, () => console.log(`Example app listening on port ${3000}!`));
