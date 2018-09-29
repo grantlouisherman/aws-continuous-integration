@@ -9,8 +9,8 @@ const { app, BrowserWindow } = require('electron')
     win = new BrowserWindow({ width: 800, height: 600 })
 
     // and load the index.html of the app.
-    win.loadFile('index.html')
-    
+    win.loadFile('index.html');
+
     // Emitted when the window is closed.
     win.on('closed', () => {
       // Dereference the window object, usually you would store windows
