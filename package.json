@@ -1,0 +1,18 @@
+{
+  "name": "aws-cont-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.325.0"
+  },
+  "devDependencies": {
+    "electron": "^3.0.2"
+  }
+}
