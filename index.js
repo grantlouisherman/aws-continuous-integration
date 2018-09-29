@@ -4,7 +4,7 @@ const AWS = require('aws-sdk'),
     fs = require('fs');
 const FOLDER = `./test`;
 const BUCKET_NAME = 'searchapp';
-const PORT = 3000
+const PORT = 4000
 
 
 function uploadToS3(name, file) {
@@ -38,4 +38,4 @@ app.get('/aws', (req, res) => {
   })
 });
 
-app.listen(3000, () => console.log(`Example app listening on port ${3000}!`));
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
