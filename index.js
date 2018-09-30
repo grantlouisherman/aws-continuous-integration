@@ -2,17 +2,15 @@ const express = require('express');
 const app = express();
 const AWS = require('aws-sdk'),
     fs = require('fs');
-const FOLDER = `./test`;
-const BUCKET_NAME = 'searchapp';
 const PORT = 4000
 
 
-function uploadToS3(name, file) {
+function uploadToS3(name, file, IAM_USER_KEY, IAM_USER_SECRET, BUCKET_NAME) {
   fs.readFile(file, function (err, data) {
     const base64data = new Buffer(data, 'binary');
     let s3bucket = new AWS.S3({
-       accessKeyId: keys.IAM_USER_KEY,
-       secretAccessKey: keys.IAM_USER_SECRET,
+       accessKeyId: IAM_USER_KEY,
+       secretAccessKey: IAM_USER_SECRET,
        Bucket: BUCKET_NAME,
      });
       const params = {
@@ -33,8 +31,20 @@ function uploadToS3(name, file) {
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/aws', (req, res) => {
-  fs.watch(FOLDER, (eventname, filename) => {
-    uploadToS3(filename, `${FOLDER}/${filename}`);
+  const {
+    folder_location,
+    iam_user_key,
+    iam_user_secret,
+    bucket_name
+  } = req.headers;
+  fs.watch(folder_location, (eventname, filename) => {
+    uploadToS3(
+      filename,
+      `${folder_location}/${filename}`,
+      iam_user_key,
+      iam_user_secret,
+      bucket_name
+    );
   })
 });
 
