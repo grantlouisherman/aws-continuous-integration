@@ -37,6 +37,17 @@ app.get('/aws', (req, res) => {
     iam_user_secret,
     bucket_name
   } = req.headers;
+  fs.readdir(folder_location, (err, files) => {
+    files.forEach(file => {
+      uploadToS3(
+        file,
+        `${folder_location}/${file}`,
+        iam_user_key,
+        iam_user_secret,
+        bucket_name
+      );
+    });
+  })
   fs.watch(folder_location, (eventname, filename) => {
     uploadToS3(
       filename,
