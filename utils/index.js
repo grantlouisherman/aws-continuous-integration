@@ -1,9 +1,5 @@
-const express = require('express');
-const app = express();
 const AWS = require('aws-sdk'),
     fs = require('fs');
-const PORT = 4000
-
 
 function uploadToS3(name, file, IAM_USER_KEY, IAM_USER_SECRET, BUCKET_NAME) {
   fs.readFile(file, function (err, data) {
@@ -28,15 +24,13 @@ function uploadToS3(name, file, IAM_USER_KEY, IAM_USER_SECRET, BUCKET_NAME) {
         });
     })
 }
+;
 
-app.get('/', (req, res) => res.send('Hello World!'));
-app.get('/aws', (req, res) => {
-  const {
-    folder_location,
-    iam_user_key,
-    iam_user_secret,
-    bucket_name
-  } = req.headers;
+function submitClickCB(
+  folder_location,
+  iam_user_key,
+  iam_user_secret,
+  bucket_name ){
   fs.readdir(folder_location, (err, files) => {
     files.forEach(file => {
       uploadToS3(
@@ -57,6 +51,19 @@ app.get('/aws', (req, res) => {
       bucket_name
     );
   })
-});
+}
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+function unWatchFileCB(folder_location){
+  fs.readdir(folder_location, (err, files) => {
+    files.forEach(file => {
+      fs.unwatchFile(`${folder_location}/$${file}`, () => {
+        console.log('file unwatched');
+      })
+    });
+  })
+}
+
+module.exports = {
+  submitClickCB,
+  unWatchFileCB
+}
