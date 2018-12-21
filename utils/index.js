@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk'),
-    fs = require('fs');
+    fs = require('fs'),
+    os = require('os');
 
 function uploadToS3(name, file, IAM_USER_KEY, IAM_USER_SECRET, BUCKET_NAME) {
   fs.readFile(file, function (err, data) {
@@ -22,30 +23,43 @@ function uploadToS3(name, file, IAM_USER_KEY, IAM_USER_SECRET, BUCKET_NAME) {
           console.log('success');
           console.log(data);
         });
-    })
-}
-;
+    });
+};
+
+function getHomeDirectory(){
+  let homeDir = os.homedir();
+  homeDir+='/Desktop/TEST_FOLDER';
+  return homeDir;
+
+};
+
+function createHomeDirectory(){
+  fs.mkdir(getHomeDirectory(),(err) => {
+    if(err){
+      console.error(err)
+    }
+  });
+};
 
 function submitClickCB(
-  folder_location,
   iam_user_key,
   iam_user_secret,
   bucket_name ){
-  fs.readdir(folder_location, (err, files) => {
+  fs.readdir(getHomeDirectory(), (err, files) => {
     files.forEach(file => {
       uploadToS3(
         file,
-        `${folder_location}/${file}`,
+        `${getHomeDirectory()}/${file}`,
         iam_user_key,
         iam_user_secret,
         bucket_name
       );
     });
   })
-  fs.watch(folder_location, (eventname, filename) => {
+  fs.watch(getHomeDirectory(), (eventname, filename) => {
     uploadToS3(
       filename,
-      `${folder_location}/${filename}`,
+      `${getHomeDirectory()}/${filename}`,
       iam_user_key,
       iam_user_secret,
       bucket_name
@@ -53,17 +67,8 @@ function submitClickCB(
   })
 }
 
-function unWatchFileCB(folder_location){
-  fs.readdir(folder_location, (err, files) => {
-    files.forEach(file => {
-      fs.unwatchFile(`${folder_location}/$${file}`, () => {
-        console.log('file unwatched');
-      })
-    });
-  })
-}
 
 module.exports = {
   submitClickCB,
-  unWatchFileCB
+  createHomeDirectory,
 }
