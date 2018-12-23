@@ -24,7 +24,7 @@ const ipc = require('electron').ipcMain;
   app.on('ready', createWindow);
 
   ipc.on('submitAction', function(event, data){
-    event.sender.send('submitReply', 'clicked');
+    event.sender.send('submitReply', data);
   });
 
   // Quit when all windows are closed.
