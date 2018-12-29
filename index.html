@@ -17,27 +17,51 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </head>
     <body>
-      <div class="main">
-        <div class="form-group">
-          <label for="BUCKET_NAME">AWS Bucket Name</label>
-          <input type="text" class="form-control" id="BUCKET_NAME">
-          <small id="BUCKET_NAME" class="form-text"></small>
-        </div>
-        <div class="form-group">
-          <label for="IAM_USER_KEY">IAM USER KEY</label>
-          <input type="text" class="form-control" id="IAM_USER_KEY">
-          <small id="IAM_USER_KEY" class="form-text"></small>
-        </div>
-        <div class="form-group">
-          <label for="IAM_USER_SECRET">IAM USER SECRET</label>
-          <input type="text" class="form-control" id="IAM_USER_SECRET">
-          <small id="IAM_USER_SECRET" class="form-text"></small>
-        </div>
-        <button type="submit" class="btn btn-primary" id="SUBMIT">Submit</button>
-        <button type="button" class="btn btn-light" id="UNWATCH">Unwatch Folder</button>
+      <div class="container">
+      <div class="row">
+        <div class="col-6 card-margin">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="./images/bucket.png" width="100" height="200">
+            <div class="card-body">
+              <h5 class="card-title">AWS Bucket Name</h5>
+              <input type="text" class="form-control" id="BUCKET_NAME">
+              <small id="BUCKET_NAME" class="form-text"></small>
+              </div>
+            </div>
+          </div>
+        <div class="col-6 card-margin">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="./images/keys.png" width="100" height="200">
+            <div class="card-body">
+              <h5 class="card-title">IAM USER KEY</h5>
+              <input type="text" class="form-control" id="IAM_USER_KEY">
+              <small id="IAM_USER_KEY" class="form-text"></small>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-6 card-margin">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="./images/IAM.png" width="100" height="200">
+            <div class="card-body">
+              <h5 class="card-title">IAM USER SECRET</h5>
+              <input type="text" class="form-control" id="IAM_USER_SECRET">
+              <small id="IAM_USER_SECRET" class="form-text"></small>
+              </div>
+            </div>
+          </div>
+        <div class="col-6 card-margin">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <button type="submit" class="btn btn-primary col-12" id="SUBMIT">Start Watching Folder</button>
+              <button type="button" class="btn btn-light col-12" id="UNWATCH">Unwatch Folder</button>
+              </div>
+            </div>
+          </div>
+      </div>
       </div>
       <script>
-        // You can also require other files to run in this process
         require('./renderer.js')
       </script>
     </body>
