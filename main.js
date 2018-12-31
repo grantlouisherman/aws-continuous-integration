@@ -19,6 +19,10 @@ const ipc = require('electron').ipcMain;
     event.sender.send('submitReply', data);
   });
 
+  ipc.on('closeWatcher', function(event, data){
+    event.sender.send('closeWatcherReply', data);
+  });
+
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
