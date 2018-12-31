@@ -1,14 +1,10 @@
 const ipc = require('electron').ipcRenderer;
-const {
-  submitClickCB,
-  createHomeDirectory
-  } = require('./utils');
 const ContinousUpload = require('./ContinuousUpload.js');
 
 let currentContUpload;
 
 document.getElementById('SUBMIT').addEventListener('click', () => {
-  
+
   const BUCKET_NAME = document.getElementById("BUCKET_NAME");
   const IAM_USER_KEY = document.getElementById("IAM_USER_KEY");
   const IAM_USER_SECRET = document.getElementById("IAM_USER_SECRET");

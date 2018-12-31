@@ -1,11 +1,20 @@
 const { app, BrowserWindow } = require('electron');
+var path = require('path')
 require('electron-reload')(__dirname);
 const ipc = require('electron').ipcMain;
+
   let win
 
   function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({ width: 800, height: 600 })
+    win = new BrowserWindow({
+      width: 800,
+      height: 600,
+      backgroundColor: '#312450',
+      icon: path.join(__dirname, 'images/icon.png'),
+      minHeight: 600,
+      minWidth: 600
+    })
 
     win.loadFile('index.html');
     win.on('closed', () => {
