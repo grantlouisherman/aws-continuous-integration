@@ -11,9 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.325.0",
+    "electron": "^4.0.0",
     "express": "^4.16.3"
   },
   "devDependencies": {
-    "electron": "^3.0.2"
+    "electron-reload": "^1.4.0"
   }
 }
