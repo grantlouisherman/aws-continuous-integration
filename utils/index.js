@@ -55,7 +55,7 @@ function submitClickCB(
         bucket_name
       );
     });
-  })
+  });
   fs.watch(getHomeDirectory(), (eventname, filename) => {
     uploadToS3(
       filename,
