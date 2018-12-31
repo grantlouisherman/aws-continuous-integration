@@ -3,3 +3,4 @@ Things to add:
   2. Ability to see content in folder
   3. Multiple folders
   4. Add Multiple Tabs
+  5. Stop the file watch X
