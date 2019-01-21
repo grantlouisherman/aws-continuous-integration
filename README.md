@@ -1,6 +1,4 @@
 Things to add:
-  1. Auto create folder X
-  2. Ability to see content in folder
-  3. Multiple folders
-  4. Add Multiple Tabs
-  5. Stop the file watch X
+1. Get icon for desktop 
+2. Get test cases
+3. Get deployed on Electron store
