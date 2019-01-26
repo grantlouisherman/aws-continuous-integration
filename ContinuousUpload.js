@@ -12,7 +12,7 @@ module.exports = class ContinousUpload {
 
   getHomeDirectory () {
     let homeDir = os.homedir()
-    homeDir += '/Desktop/TEST_FOLDER'
+    homeDir += `/Desktop/aws-${this.bucket_name}`
     return homeDir
   }
 
