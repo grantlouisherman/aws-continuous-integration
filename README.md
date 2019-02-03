@@ -1,5 +1,5 @@
 
-![icon](./images/icon.png)
+![icon](./images/twitter_header_photo_2.png)
 Things to add:
 1. Get icon for desktop 
 2. Get test cases
