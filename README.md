@@ -1,3 +1,5 @@
+
+![icon](./images/icon.png)
 Things to add:
 1. Get icon for desktop 
 2. Get test cases
